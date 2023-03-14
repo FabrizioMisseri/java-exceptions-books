@@ -39,18 +39,30 @@ String publisher;
     //SETTER
 
     public void setTitle(String title) {
+        if (title.equals("")){
+            throw new RuntimeException("non stringa vuota");
+        }
         this.title = title;
     }
 
     public void setPageNumber(int pageNumber) {
+        if (pageNumber <= 0){
+            throw new RuntimeException("non stringa vuota");
+        }
         this.pageNumber = pageNumber;
     }
 
     public void setAuthor(String author) {
+        if (author.equals("")){
+            throw new RuntimeException("non stringa vuota");
+        }
         this.author = author;
     }
 
     public void setPublisher(String publisher) {
+        if (publisher.equals("")){
+            throw new RuntimeException("non stringa vuota");
+        }
         this.publisher = publisher;
     }
 
