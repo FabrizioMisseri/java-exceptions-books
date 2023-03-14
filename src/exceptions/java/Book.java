@@ -75,6 +75,6 @@ String publisher;
                 ", pageNumber=" + pageNumber +
                 ", author='" + author + '\'' +
                 ", publisher='" + publisher + '\'' +
-                '}';
+                '}' + "\n";
     }
 }
