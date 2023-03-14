@@ -8,10 +8,15 @@ String publisher;
 
 //CONSTRUCTOR
     public Book(String title, int pageNumber, String author, String publisher) {
-        this.title = title;
-        this.pageNumber = pageNumber;
-        this.author = author;
-        this.publisher = publisher;
+
+        if (title.equalsIgnoreCase("") || pageNumber <= 0 || author.equals("") || publisher.equals("")){
+            throw new RuntimeException("SASSONE");
+        }else{
+            this.title = title;
+            this.pageNumber = pageNumber;
+            this.author = author;
+            this.publisher = publisher;
+        }
     }
 
     //GETTER
@@ -47,5 +52,17 @@ String publisher;
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
+    }
+
+    //to-String
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", pageNumber=" + pageNumber +
+                ", author='" + author + '\'' +
+                ", publisher='" + publisher + '\'' +
+                '}';
     }
 }
