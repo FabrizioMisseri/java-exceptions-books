@@ -22,15 +22,16 @@ public class Library {
         int i = 0;
 
             while (i < booksLength) {
+                System.out.println("inserisci titolo:");
+                String title = scan.nextLine();
+                System.out.println("inserisci numero pagine:");
+                int pageNumber = Integer.parseInt(scan.nextLine());
+                System.out.println("inserisci autore:");
+                String author = scan.nextLine();
+                System.out.println("inserisci titolo:");
+                String publisher = scan.nextLine();
+
                 try {
-                    System.out.println("inserisci titolo:");
-                    String title = scan.nextLine();
-                    System.out.println("inserisci numero pagine:");
-                    int pageNumber = Integer.parseInt(scan.nextLine());
-                    System.out.println("inserisci autore:");
-                    String author = scan.nextLine();
-                    System.out.println("inserisci titolo:");
-                    String publisher = scan.nextLine();
                     Book book = new Book(title, pageNumber, author, publisher);
                     books[i] = book;
                     i++;
@@ -42,31 +43,25 @@ public class Library {
         scan.close();
 
         String stringL = "";
-
         for (int j = 0; j < books.length; j++) {
             stringL += books[j].toString();
         }
 
-        File file = new File("boh.txt");
 
-        try {
-            FileWriter newFile = new FileWriter(file, true);
+        try (FileWriter newFile = new FileWriter("./boh.txt", true)){
             newFile.write(stringL);
-            newFile.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        try {
-            Scanner reader = new Scanner(file);
+        try (Scanner reader = new Scanner("./boh.txt")){
             while (reader.hasNextLine()) {
-                String data = reader.nextLine();
-                System.out.println(data);
+                System.out.println(reader.nextLine());
             }
-            reader.close();
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
 
         System.out.println("fine");
 

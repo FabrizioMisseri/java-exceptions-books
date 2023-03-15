@@ -1,22 +1,27 @@
 package exceptions.java;
 
 public class Book {
-String title;
-int pageNumber;
-String author;
-String publisher;
+private String title;
+private int pageNumber;
+private String author;
+private String publisher;
+
+public final String errorMsg = "errore hai sbagliato, riprova...";
 
 //CONSTRUCTOR
     public Book(String title, int pageNumber, String author, String publisher) {
-
-        if (title.equalsIgnoreCase("") || pageNumber <= 0 || author.equals("") || publisher.equals("")){
-            throw new RuntimeException("SASSONE");
-        }else{
-            this.title = title;
-            this.pageNumber = pageNumber;
-            this.author = author;
-            this.publisher = publisher;
-        }
+            if (constructorStringValidation(title)){
+                throw new RuntimeException(errorMsg);
+            }else{this.title = title;}
+        if (constructorNumberValidation(pageNumber)){
+            throw new RuntimeException(errorMsg);
+        }else{this.pageNumber = pageNumber;}
+        if (constructorStringValidation(author)){
+            throw new RuntimeException(errorMsg);
+        }else {this.author = author;}
+        if (constructorStringValidation(publisher)){
+            throw new RuntimeException(errorMsg);
+        }else{this.publisher = publisher;}
     }
 
     //GETTER
@@ -66,8 +71,7 @@ String publisher;
         this.publisher = publisher;
     }
 
-    //to-String
-
+    //TO-STRING
     @Override
     public String toString() {
         return "Book{" +
@@ -76,5 +80,14 @@ String publisher;
                 ", author='" + author + '\'' +
                 ", publisher='" + publisher + '\'' +
                 '}' + "\n";
+    }
+
+    //VALIDATION PROCESS
+    public boolean constructorStringValidation(String string){
+        return string.trim().equalsIgnoreCase("") || string == null;
+    }
+
+    public boolean constructorNumberValidation(int number){
+        return number <= 0;
     }
 }
