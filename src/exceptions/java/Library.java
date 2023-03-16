@@ -47,14 +47,15 @@ public class Library {
             stringL += books[j].toString();
         }
 
+        File path = new File("boh.txt");
 
-        try (FileWriter newFile = new FileWriter("./boh.txt", true)){
+        try (FileWriter newFile = new FileWriter(path, true)){
             newFile.write(stringL);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        try (Scanner reader = new Scanner("./boh.txt")){
+        try (Scanner reader = new Scanner(path)){
             while (reader.hasNextLine()) {
                 System.out.println(reader.nextLine());
             }
